@@ -26,9 +26,10 @@ function displayIssues(issues) {
   issues.forEach((issue) => {
     issueContainer.innerHTML += `
     
-    <div
+    <div 
+          onclick="issueModal(${issue.id})" 
           id="card"
-          class="bg-white shadow-sm space-y-2 border-t-8 rounded-md p-6 ${issue.status === "open" ? "border-[#00A96E]" : issue.status === "closed" ? "border-[#A855F7]" : "border-[#6f6f6f]"}"
+          class="bg-white cursor-pointer shadow-sm space-y-2 border-t-8 rounded-md p-6 ${issue.status === "open" ? "border-[#00A96E]" : issue.status === "closed" ? "border-[#A855F7]" : "border-[#6f6f6f]"}"
         >
           <div class="flex justify-between">
             <img id="status" src="${issue.status === "open" ? "assets/Open-Status.png" : "assets/Closed-Status .png"}" alt="" />
@@ -39,7 +40,7 @@ function displayIssues(issues) {
           <h2 id="title" class="font-semibold text-4">
             ${issue.title}
           </h2>
-          <p id="description" class="text-[#64748B]">
+          <p id="description" class="text-[#64748B] line-clamp-2">
             ${issue.description}
           </p>
           <div>
@@ -96,5 +97,64 @@ let filteredIssues = (status) => {
     displayIssues(openOrcloseFiltered);
   }
 };
+
+async function issueModal(issuesId) {
+  const res = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issuesId}`,
+  );
+  const data = await res.json();
+  const issue = data.data;
+  const modal = document.getElementById("issueDetails");
+  modal.innerHTML = `
+  
+          <div class="modal-box space-y-6">
+          <div class="flex justify-between items-start mb-4">
+          <h3 class="font-bold text-2xl text-black" id="modalTitle">
+            ${issue.title}
+          </h3>
+          <button
+            class="btn btn-sm rounded-full btn-ghost"
+            onclick="document.getElementById('issueDetails').close()"
+          >
+            X
+          </button>
+        </div>
+        <div class="flex items-center gap-5">
+          <span class=" rounded-3xl px-4 font-bold  ${issue.status === "open" ? "text-[#00A96E] bg-[#00a96e32]" : issue.status === "closed" ? "text-[#A855F7] bg-[#a955f732]" : "text-[#000000] bg-[#ffffff32]"}
+            ">${issue.status}</span
+          >
+          <span class="text-lg">&bull;</span>
+          <span>Opened by <span class="font-bold">${issue.author}</span> </span>
+          <span class="text-lg">&bull;</span>
+          <span class="text-[#64748B]">${new Date(issue.createdAt).toLocaleDateString()}</span>
+        </div>
+        <div>
+        ${issue.labels
+          .map(
+            (label) =>
+              `
+            <div class="label badge badge-warning">${label.toUpperCase()}</div>
+            `,
+          )
+          .join("")}
+          </div>
+          <p>${issue.description}</p>
+          <div class="flex justify-between p-4 rounded-lg bg-[#64748b10]">
+            <div>
+              <p class="text-[#64748B]">Assignee:</p>
+              <p class="font-bold">${issue.assignee}</p>
+            </div>
+            <div>
+              <p class="text-[#64748B]">Priority:</p>
+              <div id="priority" class="badge badge-soft ${issue.priority === "high" ? "badge-error" : issue.priority === "medium" ? "badge-warning" : issue.priority === "low" ? "badge-primary" : "badge-success"}">
+              ${issue.priority.toUpperCase()}
+            </div>
+            </div>
+          </div>
+        </div>
+
+  `;
+  modal.showModal();
+}
 
 loadIssues();
