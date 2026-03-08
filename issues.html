@@ -73,18 +73,21 @@
       <section class="w-11/12 mx-auto">
         <div class="bg-white p-4 rounded-md shadow-sm space-x-3">
           <button
+            onclick="filteredIssues('all')"
             id="btnAll"
             class="btn btn-primary btn-ghost border border-gray-300 w-24"
           >
             All
           </button>
           <button
+            onclick="filteredIssues('open')"
             id="btnOpen"
             class="btn btn-primary btn-ghost border border-gray-300 w-24"
           >
             Open
           </button>
           <button
+            onclick="filteredIssues('closed')"
             id="btnClosed"
             class="btn btn-primary btn-ghost border border-gray-300 w-24"
           >

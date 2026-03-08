@@ -1,5 +1,8 @@
 const issueCounts = document.getElementById("issueCounts");
 const issueContainer = document.getElementById("issueContainer");
+const btnAll = document.getElementById("btnAll");
+const btnOpen = document.getElementById("btnOpen");
+const btnClosed = document.getElementById("btnClosed");
 let allIssues = [];
 
 //fetching all issues. push() into allIssue array. counted the length and render the number to html
@@ -16,8 +19,8 @@ async function loadIssues() {
   issueCounts.innerText = allIssues.length; //counting by length
   displayIssues(json.data);
 }
-loadIssues();
 
+//displaying fetched data to html
 function displayIssues(issues) {
   issueContainer.innerHTML = "";
   issues.forEach((issue) => {
@@ -62,3 +65,25 @@ function displayIssues(issues) {
     `;
   });
 }
+
+let activeBtn = (status) => {
+  btnAll.classList.remove("btn-active");
+  btnOpen.classList.remove("btn-active");
+  btnClosed.classList.remove("btn-active");
+
+  if (status === "all") {
+    btnAll.classList.add("btn-active");
+  }
+  if (status === "open") {
+    btnOpen.classList.add("btn-active");
+  }
+  if (status === "closed") {
+    btnClosed.classList.add("btn-active");
+  }
+};
+
+let filteredIssues = (status) => {
+  activeBtn(status);
+};
+
+loadIssues();
