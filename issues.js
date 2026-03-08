@@ -84,6 +84,17 @@ let activeBtn = (status) => {
 
 let filteredIssues = (status) => {
   activeBtn(status);
+
+  if (status === "all") {
+    issueCounts.innerText = allIssues.length;
+    displayIssues(allIssues);
+  } else {
+    const openOrcloseFiltered = allIssues.filter(
+      (issue) => issue.status === status,
+    );
+    issueCounts.innerText = openOrcloseFiltered.length;
+    displayIssues(openOrcloseFiltered);
+  }
 };
 
 loadIssues();
