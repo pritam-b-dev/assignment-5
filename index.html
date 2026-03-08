@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub | Login</title>
+    <link
+      rel="shortcut icon"
+      href="assets/github-logo.png"
+      type="image/x-icon"
+    />
+    <!-- daisyUI and tailwindcss -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- css to import tailwind and fontfamily -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="min-h-screen bg-base-200 flex items-center">
+    <!-- login part -->
+    <section
+      class="w-md mx-auto bg-white flex flex-col justify-center gap-5 p-4 rounded-2xl"
+    >
+      <div class="mx-auto text-center justify-items-center">
+        <img src="assets/github-logo.png" alt="" />
+        <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
+        <p class="text-[#64748B]">Sign in to manage your issues</p>
+      </div>
+
+      <div class="card bg-base-100 w-full shadow-sm mx-auto rounded-3xl">
+        <p id="incorrect-card" class="pt-3 mx-auto text-red-500"></p>
+        <div class="card-body">
+          <fieldset class="fieldset">
+            <legend class="sr-only">Login Credentials</legend>
+            <label class="label text-base font-bold text-black">Username</label>
+            <input
+              id="user-name"
+              type="text"
+              class="input input-ghost w-full focus:border-blue-300 focus:outline-none bg-base-200 rounded-md"
+              placeholder="Enter Username"
+              maxlength="11"
+              minlength="11"
+              autofocus
+            />
+            <br />
+            <label class="label text-base font-bold text-black">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="input input-ghost w-full focus:border-blue-300 focus:outline-none bg-base-200 rounded-md"
+              placeholder="Enter Password"
+            />
+            <button id="login-btn" class="btn btn-primary rounded-md mt-4">
+              Sign In
+            </button>
+          </fieldset>
+        </div>
+      </div>
+    </section>
+
+    <script src="login.js"></script>
+  </body>
+</html>
