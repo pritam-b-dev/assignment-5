@@ -5,8 +5,18 @@ const btnOpen = document.getElementById("btnOpen");
 const btnClosed = document.getElementById("btnClosed");
 let allIssues = [];
 
+const manageSpinner = (status) => {
+  if (status == true) {
+    document.getElementById("spinner").classList.remove("hidden");
+    document.getElementById("issueContainer").classList.add("hidden");
+  } else {
+    document.getElementById("issueContainer").classList.remove("hidden");
+    document.getElementById("spinner").classList.add("hidden");
+  }
+};
 //fetching all issues. push() into allIssue array. counted the length and render the number to html
 async function loadIssues() {
+  manageSpinner(true);
   const res = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -18,6 +28,7 @@ async function loadIssues() {
   });
   issueCounts.innerText = allIssues.length; //counting by length
   displayIssues(json.data);
+  manageSpinner(false);
 }
 
 //displaying fetched data to html
@@ -158,3 +169,16 @@ async function issueModal(issuesId) {
 }
 
 loadIssues();
+
+//using the function to the iput as onkeup and to the button as onclick method.
+async function searchIssues() {
+  const input = document.getElementById("searchInput");
+  const searchValue = input.value.trim().toLowerCase();
+  const filteredIssue = allIssues.filter(
+    (issue) =>
+      issue.title.toLowerCase().includes(searchValue) ||
+      issue.description.toLowerCase().includes(searchValue),
+  );
+  issueCounts.innerText = filteredIssue.length;
+  displayIssues(filteredIssue);
+}
