@@ -38,7 +38,7 @@
   <body class="min-h-screen bg-base-200 flex items-center">
     <!-- login part -->
     <section
-      class="w-md mx-auto bg-white flex flex-col justify-center gap-5 p-4 rounded-2xl"
+      class="w-md mx-auto bg-white flex flex-col justify-center gap-5 py-4 px-4 rounded-2xl"
     >
       <div class="mx-auto text-center justify-items-center">
         <img src="assets/github-logo.png" alt="" />
@@ -51,7 +51,9 @@
         <div class="card-body">
           <fieldset class="fieldset">
             <legend class="sr-only">Login Credentials</legend>
-            <label class="label text-base font-bold text-black">Username</label>
+            <label class="label text-base font-medium text-black"
+              >Username</label
+            >
             <input
               id="user-name"
               type="text"
@@ -59,8 +61,10 @@
               placeholder="Enter Username"
               autofocus
             />
-            <br />
-            <label class="label text-base font-bold text-black">Password</label>
+
+            <label class="label text-base font-medium text-black"
+              >Password</label
+            >
             <input
               id="password"
               type="password"
@@ -72,6 +76,16 @@
             </button>
           </fieldset>
         </div>
+      </div>
+      <div
+        class="text-center before:border-b before:border-gray-200 before:flex-1 after:border-b after:border-gray-200 after:flex-1 flex items-center gap-4 text-black font-medium"
+      >
+        OR
+      </div>
+      <p class="text-center text-[#64748B]">Demo Credentials:</p>
+      <div class="bg-base-200 mx-auto text-center w-full rounded-md py-2">
+        <h2><span class="font-bold">Username:</span> admin</h2>
+        <h2><span class="font-bold">Password:</span> admin123</h2>
       </div>
     </section>
 
