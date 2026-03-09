@@ -124,7 +124,7 @@ async function issueModal(issuesId) {
             ${issue.title}
           </h3> 
         
-        <div class="flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
           <span class=" rounded-3xl px-4 font-bold  ${issue.status === "open" ? "text-[#00A96E] bg-[#00a96e32]" : issue.status === "closed" ? "text-[#A855F7] bg-[#a955f732]" : "text-[#000000] bg-[#ffffff32]"}
             ">${issue.status}</span
           >
