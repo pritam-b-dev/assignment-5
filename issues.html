@@ -35,17 +35,19 @@
     <link rel="stylesheet" href="style.css" />
   </head>
 
-  <body class="">
+  <body class="overflow-x-hidden">
     <!-- header part -->
-    <header class="w-11/12 mx-auto flex justify-between items-center p-8">
+    <header
+      class="w-full max-w-7xl mx-auto flex flex-col sm:flex-row sm:justify-between items-center space-y-4 p-2 sm:p-8"
+    >
       <!-- title-->
       <div class="flex justify-between items-center gap-2">
         <img class="w-9 h-9" src="assets/github-logo.png" alt="" />
-        <h2 class="font-semibold text-2xl">GitHub Issues Tracker</h2>
+        <h2 class="font-semibold sm:text-2xl">GitHub Issues Tracker</h2>
       </div>
       <!-- search bar -->
-      <div class="flex justify-between items-center gap-2">
-        <label class="input">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-2">
+        <label class="input w-full sm:w-auto">
           <svg
             class="h-[1em] opacity-50"
             xmlns="http://www.w3.org/2000/svg"
@@ -64,6 +66,7 @@
           </svg>
           <!-- run the function while typing and filtered using onkeyup="searchIssues()" -->
           <input
+            class="grow"
             id="searchInput"
             onkeyup="searchIssues()"
             type="search"
@@ -71,33 +74,40 @@
             placeholder="Search issues..."
           />
         </label>
-        <button onclick="searchIssues()" class="btn btn-primary">Search</button>
+        <button
+          onclick="searchIssues()"
+          class="btn btn-primary w-full sm:w-auto"
+        >
+          Search
+        </button>
       </div>
     </header>
 
     <!-- main body  -->
-    <main class="min-h-screen bg-base-200 p-8 border-t-2 border-gray-200">
+    <main
+      class="min-h-screen bg-base-200 p-2 sm:p-8 border-t-2 border-gray-200"
+    >
       <!-- buttons to show data  -->
-      <section class="w-11/12 mx-auto">
+      <section class="w-full max-w-7xl mx-auto">
         <div class="bg-white p-4 rounded-md shadow-sm space-x-3">
           <button
             onclick="filteredIssues('all')"
             id="btnAll"
-            class="btn btn-primary btn-ghost btn-active border border-gray-300 w-24"
+            class="btn btn-primary btn-ghost btn-active border border-gray-300 w-16 sm:w-24"
           >
             All
           </button>
           <button
             onclick="filteredIssues('open')"
             id="btnOpen"
-            class="btn btn-primary btn-ghost border border-gray-300 w-24"
+            class="btn btn-primary btn-ghost border border-gray-300 w-16 sm:w-24"
           >
             Open
           </button>
           <button
             onclick="filteredIssues('closed')"
             id="btnClosed"
-            class="btn btn-primary btn-ghost border border-gray-300 w-24"
+            class="btn btn-primary btn-ghost border border-gray-300 w-16 sm:w-24"
           >
             Closed
           </button>
@@ -106,7 +116,7 @@
 
       <!-- total issues count and open-closed isssue color indicator-->
       <section
-        class="w-11/12 mx-auto bg-white mt-5 flex justify-between rounded-t-sm shadow-sm"
+        class="w-full max-w-7xl mx-auto bg-white mt-5 flex flex-col sm:flex-row justify-between rounded-t-sm shadow-sm"
       >
         <div class="flex gap-3 p-4">
           <div
@@ -143,7 +153,7 @@
       <!-- fetching data from api -->
       <section
         id="issueContainer"
-        class="w-11/12 mx-auto p-4 bg-[#EFEFEF] border-t-2 border-gray-300 rounded-b-sm shadow-sm grid grid-cols-3 gap-4"
+        class="w-full max-w-7xl mx-auto p-4 bg-[#EFEFEF] border-t-2 border-gray-300 rounded-b-sm shadow-sm grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4"
       ></section>
       <dialog id="issueDetails" class="modal"></dialog>
     </main>

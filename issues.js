@@ -119,23 +119,17 @@ async function issueModal(issuesId) {
   modal.innerHTML = `
   
           <div class="modal-box space-y-6">
-          <div class="flex justify-between items-start mb-4">
+          
           <h3 class="font-bold text-2xl text-black" id="modalTitle">
             ${issue.title}
-          </h3>
-          <button
-            class="btn btn-sm rounded-full btn-ghost"
-            onclick="document.getElementById('issueDetails').close()"
-          >
-            X
-          </button>
-        </div>
-        <div class="flex items-center gap-5">
+          </h3> 
+        
+        <div class="flex items-center justify-between gap-2">
           <span class=" rounded-3xl px-4 font-bold  ${issue.status === "open" ? "text-[#00A96E] bg-[#00a96e32]" : issue.status === "closed" ? "text-[#A855F7] bg-[#a955f732]" : "text-[#000000] bg-[#ffffff32]"}
             ">${issue.status}</span
           >
           <span class="text-lg">&bull;</span>
-          <span>Opened by <span class="font-bold">${issue.author}</span> </span>
+          <span class="text-center">Opened by <span class="font-bold">${issue.author}</span> </span>
           <span class="text-lg">&bull;</span>
           <span class="text-[#64748B]">${new Date(issue.createdAt).toLocaleDateString()}</span>
         </div>
@@ -160,10 +154,18 @@ async function issueModal(issuesId) {
               <div id="priority" class="badge badge-soft ${issue.priority === "high" ? "badge-error" : issue.priority === "medium" ? "badge-warning" : issue.priority === "low" ? "badge-primary" : "badge-success"}">
               ${issue.priority.toUpperCase()}
             </div>
-            </div>
           </div>
+          
         </div>
-
+          <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+      </div>
+        
+          
   `;
   modal.showModal();
 }
